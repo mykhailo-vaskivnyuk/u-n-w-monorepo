@@ -1,16 +1,18 @@
 services:
-#    front:
-#        container_name: u-n-w.front.local
-#        build:
-#            context: ./front
-##        env_file:
-##        - .env
-#        volumes:
-#        - front_data:/app
-#        - /app/node_modules
-#        restart: unless-stopped
-#        networks:
-#        - u-n-w_network
+    front:
+        container_name: u-n-w.front.local
+        build:
+            context: ./front
+        env_file:
+        - front/vite/.env.development
+        ports:
+        - "3000:3000"
+        volumes:
+        - front_data:/app
+        - /app/node_modules
+        restart: unless-stopped
+        networks:
+        - u-n-w_network
 
     back:
         container_name: u-n-w.back.local
@@ -48,12 +50,12 @@ volumes:
             type: none
             device: ${PWD}/back
             o: bind
-#    front_data:
-#        driver: local
-#        driver_opts:
-#            type: none
-#            device: ${PWD}/front
-#            o: bind
+    front_data:
+        driver: local
+        driver_opts:
+            type: none
+            device: ${PWD}/front
+            o: bind
 
 networks:
     u-n-w_network:
