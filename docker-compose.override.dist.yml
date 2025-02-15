@@ -2,6 +2,9 @@
 #    back:
 #        ports:
 #        - "8000:8000"
+#    front:
+#        ports:
+#        - "3000:3000"
 #    postgres:
 #        ports:
 #        - "5432:5432"
