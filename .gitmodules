@@ -1,0 +1,6 @@
+[submodule "front"]
+	path = front
+	url = git@github.com:mykhailo-vaskivnyuk/u-n-w-front.git
+[submodule "back"]
+	path = back
+	url = git@github.com:mykhailo-vaskivnyuk/u-n-w-back.git
