@@ -1,0 +1,61 @@
+services:
+#    front:
+#        container_name: u-n-w.front.local
+#        build:
+#            context: ./front
+##        env_file:
+##        - .env
+#        volumes:
+#        - front_data:/app
+#        - /app/node_modules
+#        restart: unless-stopped
+#        networks:
+#        - u-n-w_network
+
+    back:
+        container_name: u-n-w.back.local
+        build:
+            context: ./back
+        env_file:
+        - .env
+        volumes:
+        - back_data:/app
+        - /app/node_modules
+        - /app/js
+        restart: unless-stopped
+        networks:
+        - u-n-w_network
+
+    postgres:
+        container_name: u-n-w.postgres.local
+        image: postgres:15-alpine
+        restart: unless-stopped
+        environment:
+            POSTGRES_DB: merega
+            POSTGRES_USER: merega
+            POSTGRES_PASSWORD: merega
+        volumes:
+        - postgres_data:/var/lib/postgresql/data
+        networks:
+        - u-n-w_network
+
+
+volumes:
+    postgres_data:
+    back_data:
+        driver: local
+        driver_opts:
+            type: none
+            device: ${PWD}/back
+            o: bind
+#    front_data:
+#        driver: local
+#        driver_opts:
+#            type: none
+#            device: ${PWD}/front
+#            o: bind
+
+networks:
+    u-n-w_network:
+        driver: bridge
+
